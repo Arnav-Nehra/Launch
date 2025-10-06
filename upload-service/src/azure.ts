@@ -20,6 +20,16 @@ export async function uploadBlobFromLocalPath(
 ): Promise<void> { 
   const blockBlobClient: BlockBlobClient = containerClient.getBlockBlobClient(blobName);
   await blockBlobClient.uploadFile(localFilePath);
+
+  for await (const blob of containerClient.listBlobsFlat()) {
+  // Get Blob Client from name, to get the URL
+  const tempBlockBlobClient = containerClient.getBlockBlobClient(blob.name);
+
+  // Display blob name and URL
+  console.log(
+    `\n\tname: ${blob.name}\n\tURL: ${tempBlockBlobClient.url}\n`
+  );
+}
 }
 
 
