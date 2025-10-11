@@ -1,5 +1,6 @@
 import { createClient } from "redis";
 import { downloadBlobs, listBlobsFlat } from "./azure";
+import buildProject, { copyDist } from "./utils";
 
 const subscriber = createClient();
 subscriber.connect();
@@ -17,7 +18,8 @@ async function main(){
         
         const files = await listBlobsFlat(id);
         await downloadBlobs(files);
-
+        await buildProject(id);
+        await copyDist(id);
         publisher.hSet("status",id,"downloaded");
     }
 }
