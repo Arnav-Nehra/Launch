@@ -1,19 +1,21 @@
-import { useNavigate } from "react-router-dom";
-import { ThemeToggler } from "./ThemeToggler"
-import { Button } from "./ui/button"
+import { ThemeToggler } from "./ThemeToggler";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "./ui/button";
 
-export const Navbar = () => {
-    const navigate = useNavigate();
-    const scrollToFeatures = () => {
-        const featuresSection = document.getElementById('features');
-        if (featuresSection) {
-            featuresSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
 
-    return <div className="fixed top-0 flex items-center justify-between px-4 py-3 w-full z-50 bg-white dark:bg-neutral-800">
+export default function DeployPage(){
+return  <div className="bg-white dark:bg-neutral-800 flex flex-col min-h-screen">
+<div className="fixed top-0 flex items-center justify-between px-4 py-3 w-full z-50 bg-white dark:bg-neutral-800">
         <div className="flex items-center justify-between w-full max-w-7xl mx-auto">
-         
             <div className="flex items-center gap-2 flex-shrink-0">
             <svg
                 fill="currentColor"
@@ -33,25 +35,48 @@ export const Navbar = () => {
             <h2 className="text-lg md:text-2xl font-semibold">Elevate</h2>
         </div>
 
-        <div className="hidden md:flex items-center gap-8">
-            <h2 
-                onClick={scrollToFeatures}
-                className="text-sm md:text-base hover:text-neutral-500 hover:cursor-pointer dark:hover:text-gray-300 hover:underline hover:underline-offset-4 transition-colors"
-            >
-                Features
-            </h2>
-        </div>
         <div className="flex items-center gap-2 md:gap-4">
-            <Button 
-                variant={"default"} 
-                size={"sm"} 
-                className="hover:bg-neutral-700 hover:cursor-pointer dark:hover:bg-gray-400 text-xs md:text-sm px-3 md:px-4"
-                onClick={()=>navigate("/deploy")}
-            >
-                Try Now
-            </Button>
             <ThemeToggler />
         </div>
         </div>
     </div>
+    <div className="flex-1 flex items-center justify-center px-4">
+        <DeployCard/>
+    </div>
+    </div>
+}
+
+
+export function DeployCard() {
+  return (
+    <Card className="w-full max-w-sm ">
+      <CardHeader>
+        <CardTitle>Deploy your Github Repository</CardTitle>
+        <CardDescription>
+          Enter the URL of your github Repository to deploy it
+        </CardDescription>
+        
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="Repo URL"
+                type="text"
+                placeholder="https://github.com/"
+                required
+              />
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex-col gap-2">
+        <Button type="submit" className="w-full">
+            Deploy
+        </Button>
+      </CardFooter>
+    </Card>
+  )
 }

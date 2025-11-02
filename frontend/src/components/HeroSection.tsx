@@ -1,7 +1,8 @@
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 
 export default function HeroSection(){
-
+const navigate = useNavigate();
 
     return (
         <div className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -17,7 +18,7 @@ export default function HeroSection(){
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                     </span>
                     <span className="text-sm font-medium text-blue-900 dark:text-blue-100">
-                        Now in Public Beta
+                        Now in v1
                     </span>
                 </div>
 
@@ -41,6 +42,7 @@ export default function HeroSection(){
                     <Button 
                         size="lg" 
                         className="pr-2 py-6 text-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+                        onClick={()=>navigate("/deploy")}
                     >
                         Try Now
                         <svg className="w-5 h-5 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
