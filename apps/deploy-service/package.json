@@ -1,0 +1,29 @@
+{
+  "name": "deploy-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@azure/storage-blob": "^12.28.0",
+    "@types/node": "^24.7.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "redis": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.9.3"
+  }
+}
